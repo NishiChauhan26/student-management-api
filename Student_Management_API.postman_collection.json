@@ -1,0 +1,156 @@
+{
+  "info": {
+    "name": "Student Management API",
+    "description": "REST API for managing student records, built with Flask and JWT authentication, as part of the Python Development Internship at Kinetrexa Software Private Limited.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin123\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/login",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["login"]
+        },
+        "description": "Authenticate with admin credentials and receive a JWT token, valid for 1 hour. This token must be used in the Authorization header (as a Bearer token) for all protected endpoints below."
+      }
+    },
+    {
+      "name": "Add Student",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Nishi Chauhan\",\n    \"age\": 20,\n    \"course\": \"Python Development\",\n    \"marks\": 92\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/students",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["students"]
+        },
+        "description": "Create a new student record. Requires a valid JWT token. 'name' and 'course' are required fields."
+      }
+    },
+    {
+      "name": "View All Students",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/students",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["students"]
+        },
+        "description": "Retrieve all student records. This endpoint is public and does not require authentication."
+      }
+    },
+    {
+      "name": "Get Student By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/students/1",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["students", "1"]
+        },
+        "description": "Retrieve a single student record by ID. This endpoint is public and does not require authentication."
+      }
+    },
+    {
+      "name": "Update Student",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"marks\": 98\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/students/1",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["students", "1"]
+        },
+        "description": "Update an existing student record by ID. Requires a valid JWT token. Only fields included in the request body are updated."
+      }
+    },
+    {
+      "name": "Delete Student",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/students/1",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "5000",
+          "path": ["students", "1"]
+        },
+        "description": "Delete a student record by ID. Requires a valid JWT token."
+      }
+    }
+  ]
+}

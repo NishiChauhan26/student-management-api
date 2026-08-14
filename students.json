@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Nishi Chauhan",
+        "age": 20,
+        "course": "Python Development",
+        "marks": 92
+    },
+    {
+        "id": 2,
+        "name": "Nishi Chauhan",
+        "age": 20,
+        "course": "Python Development",
+        "marks": 92
+    }
+]
